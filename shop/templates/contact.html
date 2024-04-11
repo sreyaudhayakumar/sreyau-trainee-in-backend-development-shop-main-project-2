@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Sreya's Dress Store</title>
+    <style>
+        /* CSS for the navbar */
+        header {
+            background-color: #333; /* Background color for the navbar */
+            color: #fff; /* Text color for the navbar */
+            padding: 10px 0; /* Padding for the navbar */
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+        }
+        nav ul li a:hover {
+            color: #aaa; /* Change color on hover */
+        }
+        main {
+            padding: 20px;
+            text-align: center;
+            color: #333; /* Text color for the contact information */
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sreya's Dress Store</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'base' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li><a href="{% url 'register_user' %}">Account</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li> 
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Contact Us</h2>
+        <p>Feel free to get in touch with us!</p>
+        <p>Email: info@sreyasdresses.com</p>
+        <p>Phone: +1234567890</p>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Sreya's Dress Store. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; /* Set a light gray background color */
+        }
+        .navbar {
+            background-color: #343a40; /* Set a dark gray navbar background color */
+        }
+        .navbar-nav .nav-link {
+            color: #ffffff; /* Set navbar links color to white */
+        }
+        .dropdown-menu {
+            background-color: #343a40; /* Set dropdown menu background color to dark gray */
+        }
+        .dropdown-menu a {
+            color: #ffffff; /* Set dropdown menu links color to white */
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <!-- Categories Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCategories" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Categories
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownCategories">
+                    <a class="dropdown-item" href="{% url 'category_list' %}">View Categories</a>
+                    <a class="dropdown-item" href="{% url 'add_category' %}">Add Category</a>
+                </div>
+            </li>
+            
+            <!-- Products Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProducts" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Products
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownProducts">
+                    <a class="dropdown-item" href="{% url 'product_list' %}">View Products</a>
+                    <a class="dropdown-item" href="{% url 'add_product' %}">Add Product</a>
+                    <!-- Link for viewing product detail -->
+                    {% if product %}
+                        <a class="dropdown-item" href="{% url 'product_detail' pk=product.pk %}">View Product Detail</a>
+                    {% endif %}
+                </div>
+            </li>
+            
+            <!-- Orders Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownOrders" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Orders
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownOrders">
+                    <a class="dropdown-item" href="{% url 'order_history' %}">Order History</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

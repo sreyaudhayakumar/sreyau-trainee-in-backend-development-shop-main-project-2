@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+</head>
+<body>
+    <h1>Checkout</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="shipping_address">Shipping Address:</label><br>
+        <input type="text" id="shipping_address" name="shipping_address"><br>
+        <label for="shipping_city">Shipping City:</label><br>
+        <input type="text" id="shipping_city" name="shipping_city"><br>
+         <label for="shipping_postal_code">Shipping Postal Code:</label><br>
+        <input type="text" id="shipping_postal_code" name="shipping_postal_code"><br> 
+        <label for="shipping_country">Shipping Country:</label><br>
+        <input type="text" id="shipping_country" name="shipping_country"><br> 
+        <label for="payment_method">Payment Method:</label><br>
+        <select id="payment_method" name="payment_method">
+            <option value="Credit Card">Credit Card</option>
+            <option value="gpay">gpay</option>
+            <option value="cash on dilvery">cash on delvery </option>
+        </select><br><br>
+        <button type="submit">Place Order</button>
+    </form>
+</body>
+</html>

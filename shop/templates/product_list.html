@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <style>
+        /* Add your custom CSS styles here */
+        /* Example styles for product arrangement */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline-block;
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-gap: 20px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .product-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #fff;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+        .product-item img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+        .product-item img:hover {
+            transform: scale(1.1);
+        }
+        /* Style for search form and category select */
+        form {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        input[type="text"],
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        button[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'base' %}">Home</a></li>
+                <li><a href="{% url 'product_list' %}">Products</a></li>
+                <li><a href="{% url 'cart' %}">Cart</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Product List</h1>
+        <form action="{% url 'product_list' %}" method="get">
+            <input type="text" name="q" placeholder="Search by name" style="border-color: #333;">
+            <select name="category" style="border-color: #333;">
+                <option value="">All Categories</option>
+                {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+            Min Price: <input type="number" name="min_price" step="0.01" style="border-color: #333;">
+            Max Price: <input type="number" name="max_price" step="0.01" style="border-color: #333;">
+            <button type="submit">Search</button>
+        </form>
+
+        <ul class="product-list">
+            {% for product in products %}
+                <li class="product-item">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    <h2>{{ product.name }}</h2>
+                    <p>Description: {{ product.description }}</p>
+                    <p>Price: ${{ product.price }}</p>
+                    {% if product.available_quantity == 0 %}
+                        <p style="color: red;">Out of Stock</p>
+                    {% else %}
+                        {% if product.average_rating %}
+                            <p>Average Rating: {{ product.average_rating }}</p>
+                        {% endif %}
+                        <form action="{% url 'add_to_cart' product.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Add to Cart</button>
+                        </form>
+                        <a href="{% url 'add_product_review' product_id=product.id %}">Add a Review</a>
+                    {% endif %}
+                </li>
+            {% empty %}
+                <li>No products available.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

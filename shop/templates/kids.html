@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids' Products</title>
+</head>
+<body>
+    <h1>Kids' Products</h1>
+    <h2>Dresses</h2>
+    <ul>
+        {% for product in kids_dresses %}
+            <li>
+                <h3>{{ product.name }}</h3>
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" width="200">
+                <p>Description: {{ product.description }}</p>
+                <p>Price: ${{ product.price }}</p>
+                <p>Available Quantity: {{ product.available_quantity }}</p>
+                <a href="{% url 'product_detail' pk=product.pk %}">View Details</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

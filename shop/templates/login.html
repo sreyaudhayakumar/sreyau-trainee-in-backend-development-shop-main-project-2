@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* CSS for the navbar */
+        header {
+            background-color: #333; /* Background color for the navbar */
+            color: #fff; /* Text color for the navbar */
+            padding: 10px 0; /* Padding for the navbar */
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+        }
+        nav ul li a:hover {
+            color: #aaa; /* Change color on hover */
+        }
+        /* CSS for the form */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; /* Background color */
+            text-align: center;
+        }
+        h2 {
+            color: #333; /* Heading color */
+        }
+        form {
+            display: inline-block;
+            text-align: left;
+            background-color: #fff; /* Form background color */
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555; /* Label color */
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd; /* Input border */
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #333; /* Button background color same as navbar */
+            color: #fff; /* Button text color */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #555; /* Change button color on hover */
+        }
+        p.error-message {
+            color: red; /* Error message color */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sreya's Dress Store</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'base' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li><a href="{% url 'register_user' %}">Account</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li> 
+            </ul>
+        </nav>
+    </header>
+
+    <h2>Login</h2>
+    {% if error_message %}
+        <p class="error-message">{{ error_message }}</p>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>

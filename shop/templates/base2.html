@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sreya's Store{% endblock %}</title>
+    <style>
+        /* Style for the navbar */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li:last-child {
+            margin-right: 0;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Style for the logout button */
+        .logout-btn {
+            background-color: #ff3333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .logout-btn:hover {
+            background-color: #cc0000;
+        }
+
+        /* Style for the welcome message */
+        .welcome-message {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 50px;
+            color: #333;
+        }
+
+        /* Style for the background image */
+        body {
+            background-image: background-image: url("static/media/images/clothing_background.jpg"); /* Adjust the path to your image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1> Sreya's Dress Store</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'base' %}">Home</a></li>
+                <li><a href="{% url 'product_list' %}">View Products</a></li>
+                <li><a href="{% url 'order_history' %}">Order History</a></li>
+                {% if user.is_authenticated %}
+                    <li><a class="logout-btn" href="{% url 'logout' %}">Logout</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <div class="welcome-message">
+        <p> Sreya's Dress Store</p>
+    </div>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Sreya's Store. All rights reserved.</p>
+    </footer>
+</body>
+</html>

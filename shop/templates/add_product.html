@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; /* Set a light gray background color */
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #343a40; /* Set a dark gray navbar background color */
+            padding: 10px 0;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            color: #ffffff; /* Set navbar links text color to white */
+            text-decoration: none;
+        }
+        nav ul li a:hover {
+            color: #cccccc; /* Lighten the navbar links text color on hover */
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff; /* Set a white background color */
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc; /* Add a light gray border */
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            background-color: #343a40; /* Set button background color to navbar color */
+            color: #ffffff; /* Set button text color to white */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s; /* Add a smooth transition */
+        }
+        button[type="submit"]:hover {
+            background-color: #1d2124; /* Darken the button color on hover */
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="{% url 'base' %}">Home</a></li>
+        <li><a href="{% url 'product_list' %}">Products</a></li>
+        <li><a href="{% url 'category_list' %}">Categories</a></li>
+        <li><a href="{% url 'add_product' %}">Add Product</a></li>
+        <li><a href="{% url 'order_history' %}">Order History</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+    </ul>
+</nav>
+
+<h1>Add Product</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name"><br>
+    <label for="description">Description:</label><br>
+    <textarea id="description" name="description"></textarea><br>
+    <label for="price">Price:</label><br>
+    <input type="text" id="price" name="price"><br>
+    <label for="image">Image:</label><br>
+    <input type="file" id="image" name="image"><br>
+    <label for="category">Category:</label><br>
+    <select id="category" name="category">
+        {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+        {% endfor %}
+    </select><br>
+    <label for="available_quantity">Available Quantity:</label><br>
+    <input type="number" id="available_quantity" name="available_quantity"><br>
+    <button type="submit">Add Product</button>
+</form>
+
+</body>
+</html>

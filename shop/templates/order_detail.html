@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Detail</title>
+    <style>
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; /* Set a light gray background color */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #343a40; /* Set a dark gray navbar background color */
+            padding: 10px 0;
+            color: #ffffff; /* Set navbar text color to white */
+        }
+        .navbar a {
+            color: #ffffff; /* Set navbar links color to white */
+            text-decoration: none; /* Remove underline from navbar links */
+            margin: 0 15px; /* Add some margin between navbar links */
+        }
+        .navbar a:hover {
+            color: #cccccc; /* Lighten the navbar links text color on hover */
+        }
+
+        /* Button styles */
+        button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            background-color: #343a40; /* Set button background color to match the navbar */
+            color: #fff; /* Set button text color to white */
+            cursor: pointer;
+            transition: background-color 0.3s; /* Add a smooth transition */
+        }
+        button:hover {
+            background-color: #212529; /* Darken the button color on hover */
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="{% url 'base' %}">Home</a>
+    <a href="{% url 'order_history' %}">Order History</a>
+    <a href="{% url 'logout' %}">Logout</a>
+</nav>
+
+<div class="container">
+    <h1>Order Detail</h1>
+    <p>Order ID: {{ order.id }}</p>
+    <p>Shipping Address: {{ order.shipping_address }}</p>
+    <p>Postal Code: {{ order.shipping_postal_code }}</p>
+    <p>City: {{ order.shipping_city }}</p>
+    <p>Country: {{ order.shipping_country }}</p>
+    <p>Total Price: ${{ order.total_price }}</p>
+    <p>Status: {{ order.status }}</p>
+    <p>Payment Method: {{ order.payment_method }}</p>
+    <p>Order Date: {{ order.created_at }}</p>
+
+    {% if user.is_superuser %}
+    <form method="post">
+        {% csrf_token %}
+        <label for="status">Update Status:</label>
+        <select name="status" id="status">
+            <option value="Pending" {% if order.status == 'Pending' %}selected{% endif %}>Pending</option>
+            <option value="Processing" {% if order.status == 'Processing' %}selected{% endif %}>Processing</option>
+            <option value="Shipped" {% if order.status == 'Shipped' %}selected{% endif %}>Shipped</option>
+            <option value="Delivered" {% if order.status == 'Delivered' %}selected{% endif %}>Delivered</option>
+        </select>
+        <button type="submit">Update Status</button>
+    </form>
+    {% endif %}
+</div>
+
+</body>
+</html>

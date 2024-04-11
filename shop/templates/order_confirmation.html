@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <style>
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; /* Set a light gray background color */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container styles */
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff; /* Set a white background color */
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+            text-align: center;
+        }
+
+        /* Heading styles */
+        h1 {
+            color: #007bff; /* Set heading color to blue */
+        }
+
+        /* Paragraph styles */
+        p {
+            color: #333; /* Set paragraph text color to dark gray */
+            font-size: 18px;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #343a40; /* Set a dark gray navbar background color */
+            padding: 10px 0;
+            color: #ffffff; /* Set navbar text color to white */
+            text-align: center;
+        }
+        .navbar a {
+            color: #ffffff; /* Set navbar links color to white */
+            text-decoration: none; /* Remove underline from navbar links */
+            margin: 0 15px; /* Add some margin between navbar links */
+        }
+        .navbar a:hover {
+            color: #cccccc; /* Lighten the navbar links text color on hover */
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="#">Home</a>
+    <a href="{% url 'order_history' %}">Order History</a>
+    <a href="{% url 'logout' %}">Logout</a>
+</nav>
+
+<div class="container">
+    <h1>Order Confirmation</h1>
+    <p>Your order with ID: {{ order.id }} has been confirmed. You will receive a confirmation email shortly.</p>
+</div>
+
+</body>
+</html>

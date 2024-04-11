@@ -1,0 +1,40 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+     path('', views.base_view, name='base'),
+     path('base2/', views.base2_view, name='base2'),
+     path('register_user/', views.register_user, name='register_user'),
+     path('verify_otp/', views.verify_otp, name='verify_otp'),
+     path('admin_view/',views.admin_view,name='admin_view'),
+     path('login/', views.login, name='login'),
+     path('logout/', views.logout_view, name='logout'),
+     path('products/', views.product_list, name='product_list'),
+     path('products/<int:pk>/', views.product_detail, name='product_detail'),
+     path('products/add/', views.add_product, name='add_product'),
+     path('products/<int:pk>/edit/', views.edit_product, name='edit_product'),
+     path('products/<int:pk>/delete/', views.delete_product, name='delete_product'),
+     path('categories/', views.category_list, name='category_list'),
+     path('categories/<int:pk>/', views.category_detail, name='category_detail'),
+     path('categories/', views.category_list, name='category_list'),
+     path('categories/add/', views.add_category, name='add_category'),
+     path('add_to_cart/<int:product_id>/', views.add_to_cart, name='add_to_cart'),
+     path('cart/', views.cart, name='cart'),
+     path('update_cart/<int:product_id>/', views.update_cart, name='update_cart'),
+     path('delete/<int:product_id>/', views.delete_from_cart, name='delete_from_cart'),
+     path('order_confirmation/<int:order_id>/', views.order_confirmation_view, name='order_confirmation'),
+     path('men/', views.men_category, name='men_category'),
+     path('women/', views.women_category, name='women_category'),
+     path('kids/', views.kids_category, name='kids_category'),
+     path('checkout/', views.checkout_view, name='checkout'),
+    path('order_confirmation/<int:order_id>/', views.order_confirmation_view, name='order_confirmation'),
+    path('order_history/', views.order_history, name='order_history'),
+    path('order_detail/<int:order_id>/', views.order_detail, name='order_detail'),
+    path('products/<int:pk>/', views.product_detail, name='product_detail'),
+    path('products/<int:product_id>/add_review/', views.add_product_review, name='add_product_review'),
+    path('thank_you/', views.thank_you, name='thank_you'),
+    path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact'),
+    
+   
+ ]
